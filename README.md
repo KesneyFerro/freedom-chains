@@ -409,21 +409,6 @@ contract FDC is ERC20, ERC20Burnable, Ownable {
     }
 }
 ```
-
-Here's a translation of the provided content into English, reformatted for a README.md file:
-
----
-
-## Lumx Protocol API Integration
-
-Integrating the Lumx Protocol API was a strategic decision crucial for the success of the project. Known for its innovation and technological excellence, Lumx Protocol offers a robust and highly secure platform for blockchain application development. Opting for Lumx Protocol not only allowed us to implement complex functionalities with ease but also ensured the security and reliability of our reward system. The ability to interact with the contract to perform mint operations is a testament to the flexibility and efficiency of the Lumx Protocol. The Lumx API stands out for its intuitive interface and exceptional support, facilitating seamless integration and enabling our team to focus on optimizing user experience and system functionality.
-
-The introduction of the FDC token within SNAP has created a motivating environment for agents, encouraging consistency and accuracy in data recording. Moreover, the tokenization of rewards enhances the transparency of operations, as each transaction and token accumulation are recorded on the blockchain, providing complete visibility for system administrators and agents. Implementing this token system aligns our initiative with modern scopes of loyalty and digital engagement and redefines how penitentiary operations can be managed, offering a replicable model for other institutions seeking to modernize and improve their systems through blockchain technology.
-
-Using tokens as a loyalty mechanism represents a significant innovation in penitentiary administration, providing a tangible incentive for the continuous improvement of agent performance. Despite some technical challenges, the partnership with Lumx Protocol has proven to be extremely valuable, allowing us to explore new frontiers in blockchain technology and data security, setting a new standard of efficacy and efficiency within the public sector.
-
-In summary, implementing the prisoner registration and monitoring system within the context of the National Penitentiary Administration System (SNAP) demonstrates how blockchain technology, combined with smart contracts and a user-friendly interface like MetaMask, can revolutionize transparency and efficiency in penitentiary management. By providing a transparent portal for updating inmate data and recording behaviors through smart contracts, the system promotes the immutability of information and the integrity of each prisoner's criminal history. This not only simplifies the monitoring process but also enhances trust in prison administration by ensuring a fairer and more transparent approach. Ultimately, this initiative represents a significant advance in modernizing the prison system, aiming for more effective and humane management, and ensuring effectiveness through customer loyalty.
-
 <a name="AIDetailing"></a>
 
 ### Artificial Intelligence
@@ -573,14 +558,13 @@ The integration of artificial intelligence in this blockchain application projec
 
 ### Scroll
 
-Contract: 0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5 `<br/>`
-Contract link on [Scroll Etherscan](https://sepolia.scrollscan.com/address/0x6f152c6bf0a8c692e66fe7c1cf2c29b7d4ece37a)
+Contract: 0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a
+
+<br/>
+
+Contract link on [Scroll Etherscan](https://sepolia.scrollscan.com/address/0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a#code)
 
 Scroll is a notably efficient blockchain platform, distinguished by its operational viability. We chose Scroll as the foundation for our project due to its extremely stable network and reduced gas fee costs, crucial elements for a viable and practical implementation in real-life scenarios. This strategic choice ensures that our application is not only sustainable but also broadly accessible, democratizing access to cutting-edge technologies in critical public administration systems and guaranteeing an innovative solution that promises to transform how we interact with vital governmental infrastructures.
-
-### Lumx
-
-Lumx is a blockchain platform that stands out for its innovation and robustness, providing a highly efficient development environment for our projects. We chose Lumx as the basis for our initiative due to its ease and intuitiveness in dealing with blockchain technologies in a less complex and more user-friendly manner. This strategic decision ensures that our application is not only sustainable but also highly efficient, democratizing access to advanced technologies in essential public administration systems and offering an innovative solution that promises to revolutionize how government infrastructures interact and operate. Lumx, with its exemplary support and cutting-edge technology, allows for smooth integration and reliable operation, ensuring that our project can achieve and exceed its goals successfully.
 
 <a name="ourTeam"></a>
 
@@ -1049,15 +1033,6 @@ contract FDC is ERC20, ERC20Burnable, Ownable {
 }
 ```
 
-- Uso da API do Lumx Protocol
-
-A integração com a API do Lumx Protocol foi uma decisão estratégica crucial para o sucesso do projeto. O Lumx Protocol é conhecido por sua inovação e excelência tecnológica, oferecendo uma plataforma robusta e altamente segura para o desenvolvimento de aplicações blockchain. A escolha do Lumx Protocol permitiu-nos não apenas implementar funcionalidades complexas com facilidade mas também garantir a segurança e a confiabilidade do sistema de recompensas. A capacidade de interagir com o contrato para realizar operações de mint é um testemunho da flexibilidade e eficiência do Lumx Protocol. A API do Lumx se destaca pela sua interface intuitiva e pelo suporte excepcional, facilitando uma integração sem problemas e permitindo que nossa equipe se concentre em otimizar a experiência do usuário e a funcionalidade do sistema.
-
-Dessa forma, a introdução do token FDC dentro do SNAP criou um ambiente motivador para os agentes, incentivando a consistência e a precisão no registro de dados. Além disso, a tokenização das recompensas fortalece a transparência das operações, pois cada transação e acúmulo de tokens são registrados na blockchain, proporcionando uma visibilidade completa para os administradores do sistema e os próprios agentes.
-A implementação deste sistema de tokens não apenas alinha nossa iniciativa com os escopos modernos de fidelização e engajamento digital mas também redefine a maneira como as operações penitenciárias podem ser geridas, oferecendo um modelo replicável para outras instituições buscando modernizar e melhorar seus sistemas através da tecnologia blockchain.
-
-O uso de tokens como mecanismo de fidelização representa uma inovação significativa no campo da administração penitenciária, proporcionando um incentivo tangível para o aprimoramento contínuo do desempenho dos agentes. A parceria com o Lumx Protocol, apesar de alguns desafios técnicos, provou ser extremamente valiosa, permitindo-nos explorar novas fronteiras em tecnologia blockchain e segurança de dados, estabelecendo um novo padrão de eficácia e eficiência dentro do setor público.
-
 
 Em suma, a implementação do sistema de cadastro e monitoramento de presidiários dentro do contexto do Sistema Nacional de Administração Penitenciária (SNAP) demonstra como a tecnologia blockchain, aliada a contratos inteligentes e uma interface amigável como a MetaMask, pode revolucionar a transparência e eficiência na gestão penitenciária. Ao fornecer um portal transparente para atualização de dados dos detentos e registrar comportamentos através de smart contracts, o sistema promove a imutabilidade das informações e a integridade do histórico criminal de cada preso. Isso não apenas simplifica o processo de monitoramento de pena, mas também aumenta a confiança na administração prisional ao garantir uma abordagem mais justa e transparente. Em última análise, essa iniciativa representa um avanço significativo na modernização do sistema carcerário, visando uma gestão mais eficaz e humanizada, e garantindo uma eficácia por meio da fidelização dos clientes da solução.
 
@@ -1214,14 +1189,14 @@ A integração da inteligência artificial neste projeto de aplicação blockcha
 
 ### Scroll
 
-Contrato: 0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5 `<br/>`
-Link do contrato no [Scroll Etherscan](https://sepolia.scrollscan.com/address/0x6f152c6bf0a8c692e66fe7c1cf2c29b7d4ece37a)
+Contrato: 0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a 
+
+<br/>
+
+
+Link do contrato no [Scroll Etherscan](https://sepolia.scrollscan.com/address/0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a#code)
 
 A Scroll é uma plataforma blockchain notavelmente eficiente, que se destaca pela sua viabilidade operacional. Optamos pela Scroll como alicerce do nosso projeto devido à sua rede extremamente estável e aos custos de gas fee reduzidos, elementos cruciais para uma implementação viável e prática em cenários da vida real. Esta escolha estratégica assegura que nossa aplicação seja não apenas sustentável, mas também amplamente acessível, democratizando o acesso a tecnologias de ponta em sistemas críticos de administração pública e garantindo uma solução inovadora que promete transformar a maneira como interagimos com infraestruturas estatais vitais.
-
-### Lumx
-
-A Lumx é uma plataforma de blockchain que se destaca por sua inovação e robustez, proporcionando um ambiente de desenvolvimento altamente eficiente para nossos projetos. Escolhemos a Lumx como base para nossa iniciativa devido à sua facilidade e intuitividade em lidar com tecnologias blockchain de maneira menos complexa, e mais agradável aos usuários e desenvolvedores. Esta decisão estratégica garante que nossa aplicação não só seja sustentável mas também altamente eficiente, democratizando o acesso a tecnologias avançadas em sistemas essenciais de administração pública e oferecendo uma solução inovadora que promete revolucionar a forma como as infraestruturas governamentais interagem e operam. A plataforma Lumx, com seu suporte exemplar e sua tecnologia de ponta, permite uma integração suave e uma operação confiável, garantindo que nosso projeto seja capaz de alcançar e superar suas metas com êxito.
 
 <a name="nossaEquipe"></a>
 

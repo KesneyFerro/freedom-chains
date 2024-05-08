@@ -4,7 +4,7 @@ import { abiData } from "@/app/abis/abi";
 import { config } from "@/config";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { FormEvent, SetStateAction, useState } from "react";
 import { useWriteContract } from "wagmi";
 import { switchChain } from "wagmi/actions";
 import { scrollSepolia } from "wagmi/chains";
@@ -25,7 +25,7 @@ export default function AddComportamento({}) {
     e.preventDefault();
     await switchChain(config, { chainId: scrollSepolia.id });
     writeContract({
-      address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
+      address: "0x52C9fa84a27958f651BC54b0e0b574E8F5a9FA80",
       functionName: "addBehaviorRecord",
       abi: abiData,
       chainId: 534351,
@@ -39,11 +39,12 @@ export default function AddComportamento({}) {
     setTipoComportamento("");
     setDataComportamento("");
   };
+
   return (
     <motion.form
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      onSubmit={(e) => handleAddComportamento(e)}
+      onSubmit={(e: FormEvent<HTMLFormElement>) => handleAddComportamento(e)}
       className="flex flex-col gap-y-3 mt-5"
     >
       <Input
@@ -52,7 +53,9 @@ export default function AddComportamento({}) {
         type="number"
         isDisabled={isPending}
         value={identificadorDetentoComportamento}
-        onChange={(e) => setIdentificadorDetentoComportamento(e.target.value)}
+        onChange={(e: { target: { value: SetStateAction<string> } }) =>
+          setIdentificadorDetentoComportamento(e.target.value)
+        }
       />
       <Input
         isRequired
@@ -60,7 +63,9 @@ export default function AddComportamento({}) {
         type="text"
         isDisabled={isPending}
         value={tipoComportamento}
-        onChange={(e) => setTipoComportamento(e.target.value)}
+        onChange={(e: { target: { value: SetStateAction<string> } }) =>
+          setTipoComportamento(e.target.value)
+        }
       />
       <Textarea
         isRequired
@@ -68,7 +73,9 @@ export default function AddComportamento({}) {
         type="text"
         isDisabled={isPending}
         value={dataComportamento}
-        onChange={(e) => setDataComportamento(e.target.value)}
+        onChange={(e: { target: { value: SetStateAction<string> } }) =>
+          setDataComportamento(e.target.value)
+        }
       />
       <Input
         isRequired

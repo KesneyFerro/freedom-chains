@@ -1,8 +1,19 @@
+import { config } from "@/config";
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useBalance } from "wagmi";
 
 export default function TokenShop() {
-  const [tokens, setTokens] = useState(360);
+  const [tokens, setTokens] = useState(0);
+
+  // const { data } = useBalance({
+  //   address: "0x52C9fa84a27958f651BC54b0e0b574E8F5a9FA80",
+  //   config: config,
+  // });
+
+  // useEffect(() => {
+  //   if (data) setTokens(parseFloat(data?.formatted) || 0);
+  // }, [data, tokens]);
 
   return (
     <motion.section
@@ -15,7 +26,7 @@ export default function TokenShop() {
           O seu saldo é de:
         </span>
         <h3 className="mt-2 text-2xl text-center text-[#7c1c8b] font-bold">
-          {tokens} Tokens
+          0 Tokens
         </h3>
       </div>
 

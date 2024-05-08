@@ -18,7 +18,7 @@ export default function CustomNavMenu({
     isPending,
   } = useReadContract({
     abi: abiData,
-    address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
+    address: "0x52C9fa84a27958f651BC54b0e0b574E8F5a9FA80",
     functionName: "getAllPrisonerDetails",
     chainId: 534351,
     args: [],

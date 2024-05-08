@@ -6,11 +6,16 @@
 
 <br>
 
+___
+
 <a name="USDocumentation"></a>
 
 🎨 [Figma](https://www.figma.com/file/9Ru5jjxZA5mLomAgVARDsQ/FreedomChains?type=design&node-id=0%3A1&mode=design&t=zAf4jQXI7qiX4nqA-1)
 
 🎬 [Pitch](https://youtu.be/xaboVlYkYhM)
+
+<br>
+
 🎬 [Navigating through Freedom Chains](https://youtu.be/1hJH4Qg-MBw)
 
  
@@ -628,11 +633,16 @@ Lumx is a blockchain platform that stands out for its innovation and robustness,
 
 <br>
 
+___
+
 <a name="BRDocumentation"></a>
 
 🎨 [Figma](https://www.figma.com/file/9Ru5jjxZA5mLomAgVARDsQ/FreedomChains?type=design&node-id=0%3A1&mode=design&t=zAf4jQXI7qiX4nqA-1)
 
 🎬 [Pitch](https://youtu.be/xaboVlYkYhM)
+
+<br>
+
 🎬 [Navegando pela FreedomChains](https://youtu.be/1hJH4Qg-MBw)
 
 ⚖️ Promovendo justiça e humanidade no sistema penal brasileiro, Freedom Chain oferece uma visão transparente, segura e anônima do histórico comportamental dos presos, fortalecendo o processo de ressocialização e garantindo os direitos da população carcerária.

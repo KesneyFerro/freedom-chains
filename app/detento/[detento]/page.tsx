@@ -9,7 +9,20 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Detento({}) {
-  const reportsAvailable = ["1234", "2396", "2960", "4992", "5832", "5990", "7107", "7438", "7643", "8748", "9876", "9836"];
+  const reportsAvailable = [
+    "1234",
+    "2396",
+    "2960",
+    "4992",
+    "5832",
+    "5990",
+    "7107",
+    "7438",
+    "7643",
+    "8748",
+    "9876",
+    "9836",
+  ];
   const params = useParams<{ detento: string }>();
   const {
     data: prisioneiro,
@@ -36,6 +49,7 @@ export default function Detento({}) {
   });
 
   const [comportamentoAnalytic, setComportamentoAnalytic] = useState<any>([]);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     if (behavorRecords) {
@@ -62,8 +76,6 @@ export default function Detento({}) {
     }
   }, [behavorRecords, params.detento]);
 
-  console.log(comportamentoAnalytic);
-
   if (isPending)
     return (
       <div className="mt-10 w-full flex justify-center items-center">
@@ -84,7 +96,6 @@ export default function Detento({}) {
       </div>
     );
   }
-  console.log(prisioneiro);
   const howLongUntilRelease = () => {
     const initialDate = new Date(
       Number((prisioneiro as any)?.prisonDate) * 1000 || 0
@@ -109,6 +120,43 @@ export default function Detento({}) {
       `${Math.abs(days)} ${Math.abs(days) === 1 ? "dia" : "dias"}`,
       days <= 0,
     ];
+  };
+
+  const getPrisonerReport = async () => {
+    const history = (behavorRecords as any[])?.map((record: any) => ({
+      comportamento: record.behavior,
+      comentário: record.comment,
+      data: new Date(Number(record.date) * 1000).toLocaleDateString(),
+    }));
+
+    const dataToSend = {
+      id_detento: params.detento,
+      historico: history,
+    };
+    setLoading(true);
+
+    try {
+      const res = await fetch(
+        "https://fastapi-example-wxta.onrender.com/historico/pdf",
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(dataToSend),
+        }
+      );
+      const blob = await res.blob();
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "relatorio.pdf";
+      a.click();
+    } catch (error) {
+      setLoading(false);
+    }
+    setLoading(false);
   };
 
   return (
@@ -206,7 +254,7 @@ export default function Detento({}) {
             <h4 className="text-white font-medium">Histórico</h4>
 
             <div className="p-3 rounded-md bg-[#ca61db]">
-              <Link
+              {/* <Link
                 target="_blank"
                 href={
                   reportsAvailable.includes(params.detento)
@@ -218,14 +266,20 @@ export default function Detento({}) {
                     ? "cursor-pointer"
                     : "cursor-not-allowed"
                 }
+              > */}
+              <button
+                // disabled={!reportsAvailable.includes(params.detento)}
+                disabled={(behavorRecords as any[])?.length === 0 || loading}
+                onClick={() => getPrisonerReport()}
+                className="flex justify-center items-center rounded-md disabled:text-white/50 disabled:bg-[#8d4c99]  bg-[#b246c4] text-white px-3 py-2 w-full uppercase "
               >
-                <button
-                  disabled={!reportsAvailable.includes(params.detento)}
-                  className="rounded-md disabled:text-white/50 disabled:bg-[#8d4c99]  bg-[#b246c4] text-white px-3 py-2 w-full uppercase "
-                >
-                  Baixar Histórico Completo
-                </button>
-              </Link>
+                {loading ? (
+                  <PiSpinner className="text-2xl text-[#fff] animate-spin" />
+                ) : (
+                  <span>Baixar Histórico Completo</span>
+                )}
+              </button>
+              {/* </Link> */}
             </div>
 
             {(behavorRecords as any)?.map((record: any, index: number) => (

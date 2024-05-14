@@ -28,7 +28,7 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <Providers initialState={initialState}>
-          <div className="flex mx-auto max-w-[1000px] px-4 w-full flex-col items-center justify-center gap-y-0">
+          <div className="flex mx-auto max-w-[1500px] px-4 w-full flex-col items-center justify-center gap-y-0">
             <Navbar />
             {children}
           </div>

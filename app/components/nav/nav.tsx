@@ -1,6 +1,17 @@
 /* eslint-disable @next/next/no-img-element */
+"use client";
 import Link from "next/link";
+import { AiOutlineShopping } from "react-icons/ai";
+import { HiOutlineMenu } from "react-icons/hi";
 import { PiBell, PiGear, PiList } from "react-icons/pi";
+import {
+  Dropdown,
+  DropdownTrigger,
+  DropdownMenu,
+  DropdownSection,
+  DropdownItem,
+  Button,
+} from "@nextui-org/react";
 
 export default function Navbar() {
   return (
@@ -9,11 +20,37 @@ export default function Navbar() {
         <img src="/logo.png" className="max-h-[30px]" alt="logo" />
       </Link>
 
-      <div className="flex gap-x-5">
-        <PiBell className="text-3xl text-black" />
-        <Link href={"/detento/administrar"}>
-          <PiGear className="text-3xl text-black" />
+      <div className="flex gap-x-2 items-center">
+        <Link href={"/detento/administrar?page=2"}>
+          <AiOutlineShopping className="text-3xl text-black" />
         </Link>
+        {/* <Link href={"/detento/administrar"}>
+          <HiOutlineMenu className="text-3xl text-black" />
+        </Link> */}
+        <Dropdown>
+          <DropdownTrigger>
+            <Button className="py-2" variant="light">
+              <HiOutlineMenu className="text-3xl text-black" />
+            </Button>
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Static Actions">
+            <DropdownItem
+              href="http://localhost:3000/detento/administrar?page=0"
+              key="new"
+            >
+              Adicionar Detento
+            </DropdownItem>
+            <DropdownItem
+              href="http://localhost:3000/detento/administrar?page=1"
+              key="copy"
+            >
+              Adicionar Comportamento
+            </DropdownItem>
+            <DropdownItem key="edit" href="http://localhost:3000/penitenciaria">
+              Criar Penitenciaria
+            </DropdownItem>
+          </DropdownMenu>
+        </Dropdown>
       </div>
     </nav>
   );

@@ -1,16 +1,23 @@
 "use client";
 
 import { abiData } from "@/app/abis/abi";
+import { abiData2 } from "@/app/abis/tokenAbi";
 import { config } from "@/config";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { motion } from "framer-motion";
 import { FormEvent, SetStateAction, useState } from "react";
 import { useWriteContract } from "wagmi";
 import { switchChain } from "wagmi/actions";
-import { scrollSepolia } from "wagmi/chains";
+import { scrollSepolia, sepolia } from "wagmi/chains";
 
 export default function AddComportamento({}) {
   const { data: hash, error, isPending, writeContract } = useWriteContract();
+  const {
+    data: hashToken,
+    error: errorToken,
+    isPending: isPendingToken,
+    writeContract: writeContractToken,
+  } = useWriteContract();
 
   const [
     identificadorDetentoComportamento,
@@ -18,13 +25,14 @@ export default function AddComportamento({}) {
   ] = useState("");
   const [dataComportamento, setDataComportamento] = useState("");
   const [tipoComportamento, setTipoComportamento] = useState("");
+  const [wallet, setWallet] = useState("");
 
   const handleAddComportamento = async (
     e: React.FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
     await switchChain(config, { chainId: scrollSepolia.id });
-    writeContract({
+    await writeContract({
       address: "0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a",
       functionName: "addBehaviorRecord",
       abi: abiData,
@@ -38,6 +46,19 @@ export default function AddComportamento({}) {
     setIdentificadorDetentoComportamento("");
     setTipoComportamento("");
     setDataComportamento("");
+
+    if (error) {
+      console.log(error);
+      return;
+    }
+    await switchChain(config, { chainId: sepolia.id });
+    await writeContractToken({
+      address: "0x52C9fa84a27958f651BC54b0e0b574E8F5a9FA80",
+      functionName: "mint",
+      chainId: 11155111,
+      abi: abiData2,
+      args: [wallet, BigInt(1 * 10 ** 18)],
+    });
   };
 
   return (
@@ -81,6 +102,10 @@ export default function AddComportamento({}) {
         isRequired
         label="Sua carteira"
         isDisabled={isPending}
+        value={wallet}
+        onChange={(e: { target: { value: SetStateAction<string> } }) =>
+          setWallet(e.target.value)
+        }
         placeholder="Digite sua carteira para receber Tokens"
       />
       <Button
@@ -91,11 +116,11 @@ export default function AddComportamento({}) {
       >
         {error ? "Ocorreu um erro" : "Adicionar Comportamento"}
       </Button>
-      {hash && (
+      {hashToken && (
         <span>
           Transação enviada com sucesso:{" "}
           <a
-            href={`https://sepolia.scrollscan.com/tx/${hash}`}
+            href={`https://sepolia.etherscan.io/tx/${hashToken}`}
             target="_blank"
             rel="noreferrer"
             className="text-blue-500"

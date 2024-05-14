@@ -4,7 +4,11 @@ import { abiData } from "@/app/abis/abi";
 import { config } from "@/config";
 import { Button, Input, Textarea } from "@nextui-org/react";
 import { motion } from "framer-motion";
+<<<<<<< HEAD
 import { FormEvent, SetStateAction, useState } from "react";
+=======
+import { useState } from "react";
+>>>>>>> FreedomChains/main
 import { useWriteContract } from "wagmi";
 import { switchChain } from "wagmi/actions";
 import { scrollSepolia } from "wagmi/chains";
@@ -25,7 +29,11 @@ export default function AddComportamento({}) {
     e.preventDefault();
     await switchChain(config, { chainId: scrollSepolia.id });
     writeContract({
+<<<<<<< HEAD
       address: "0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a",
+=======
+      address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
+>>>>>>> FreedomChains/main
       functionName: "addBehaviorRecord",
       abi: abiData,
       chainId: 534351,
@@ -39,12 +47,19 @@ export default function AddComportamento({}) {
     setTipoComportamento("");
     setDataComportamento("");
   };
+<<<<<<< HEAD
 
+=======
+>>>>>>> FreedomChains/main
   return (
     <motion.form
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
+<<<<<<< HEAD
       onSubmit={(e: FormEvent<HTMLFormElement>) => handleAddComportamento(e)}
+=======
+      onSubmit={(e) => handleAddComportamento(e)}
+>>>>>>> FreedomChains/main
       className="flex flex-col gap-y-3 mt-5"
     >
       <Input
@@ -53,9 +68,13 @@ export default function AddComportamento({}) {
         type="number"
         isDisabled={isPending}
         value={identificadorDetentoComportamento}
+<<<<<<< HEAD
         onChange={(e: { target: { value: SetStateAction<string> } }) =>
           setIdentificadorDetentoComportamento(e.target.value)
         }
+=======
+        onChange={(e) => setIdentificadorDetentoComportamento(e.target.value)}
+>>>>>>> FreedomChains/main
       />
       <Input
         isRequired
@@ -63,9 +82,13 @@ export default function AddComportamento({}) {
         type="text"
         isDisabled={isPending}
         value={tipoComportamento}
+<<<<<<< HEAD
         onChange={(e: { target: { value: SetStateAction<string> } }) =>
           setTipoComportamento(e.target.value)
         }
+=======
+        onChange={(e) => setTipoComportamento(e.target.value)}
+>>>>>>> FreedomChains/main
       />
       <Textarea
         isRequired
@@ -73,9 +96,13 @@ export default function AddComportamento({}) {
         type="text"
         isDisabled={isPending}
         value={dataComportamento}
+<<<<<<< HEAD
         onChange={(e: { target: { value: SetStateAction<string> } }) =>
           setDataComportamento(e.target.value)
         }
+=======
+        onChange={(e) => setDataComportamento(e.target.value)}
+>>>>>>> FreedomChains/main
       />
       <Input
         isRequired

@@ -33,7 +33,11 @@ export default function Home() {
     isPending,
   } = useReadContract({
     abi: abiData,
+<<<<<<< HEAD
     address: "0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a",
+=======
+    address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
+>>>>>>> FreedomChains/main
     functionName: "getAllPrisonerDetails",
     chainId: 534351,
     args: [],

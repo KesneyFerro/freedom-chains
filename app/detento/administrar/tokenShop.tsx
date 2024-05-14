@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { config } from "@/config";
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
@@ -14,6 +15,13 @@ export default function TokenShop() {
   // useEffect(() => {
   //   if (data) setTokens(parseFloat(data?.formatted) || 0);
   // }, [data, tokens]);
+=======
+import { motion } from "framer-motion";
+import { useState } from "react";
+
+export default function TokenShop() {
+  const [tokens, setTokens] = useState(360);
+>>>>>>> FreedomChains/main
 
   return (
     <motion.section
@@ -26,7 +34,11 @@ export default function TokenShop() {
           O seu saldo é de:
         </span>
         <h3 className="mt-2 text-2xl text-center text-[#7c1c8b] font-bold">
+<<<<<<< HEAD
           0 Tokens
+=======
+          {tokens} Tokens
+>>>>>>> FreedomChains/main
         </h3>
       </div>
 

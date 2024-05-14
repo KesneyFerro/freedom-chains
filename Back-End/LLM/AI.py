@@ -47,20 +47,6 @@ def generate_detainee_report(comments):
   return report
 
 
-# Take the report in markdown and convert to an PDF file
-# The created PDF's are saved in the Reports folder
-# convert_to_pdf(final_report)
-
-def convert_to_pdf(markdown_content):
-    current_date_time = datetime.datetime.now()
-    formatted_date_time = current_date_time.strftime("%Y_%m_%d %H_%M_%S")
-    print("Formatted date and time:", formatted_date_time)
-
-    output_file = "../Reports/" + f"Detainee_report_{formatted_date_time}.pdf"
-    pypandoc.convert_text(markdown_content, "pdf", format="md", outputfile=output_file, extra_args=['-V', 'graphviz'], encoding='utf-8')
-
-
-
 # Load the enviroment variables
 enviroment = dotenv_values(".env")
 
@@ -118,12 +104,14 @@ Preciso que você faça o comentário de 4 comentários diferentes e retorne os 
         context = """Você vai receber diversos comentários feitos por agentes penitenciários indicando ações de um detento ao longo do tempo. Você deve analisar cada um dos comentários e gerar um relatório com as informações apresentadas. Separe e cite todos os comportamentos ruins e comportamentos bons do detento, separe o total de ações de ressocialização que ele fez (leituras, estudos e trabalho).
         O relatório deve ter 4 seções, sendo elas:
         1 - Lista de comportamentos ruins, com a data do comentário referente
-        2 - Lista de recorrências de comportamentos ruins, ou seja, liste todos os comportamentos ruins que são recorrentes e acontecem mais de uma vez, caso o comportamento tenha a frequência de apenas uma vez, não coloque nesta lista
+        2 - Lista de recorrências de comportamentos ruins, ou seja, liste todos os comportamentos ruins que são recorrentes e acontecem mais de uma vez, não se esqueça de colocar a data do comentário na tabela, caso o comportamento tenha a frequência de apenas uma vez, não coloque nesta lista
         3 - Lista de comportamentos bons, com a data do comentário referente
-        4 - Lista de recorrências de comportamentos bons, ou seja, liste todos os comportamentos bons que são recorrentes e acontecem mais de uma vez, caso o comportamento tenha a frequência de apenas uma vez, não coloque nesta lista
+        4 - Lista de recorrências de comportamentos bons, ou seja, liste todos os comportamentos bons que são recorrentes e acontecem mais de uma vez, não se esqueça de colocar a data do comentário na tabela, caso o comportamento tenha a frequência de apenas uma vez, não coloque nesta lista
         5 - Ações de ressocialização
         
-        OBS: As seções 1, 2, 3 e 4 devem vir em forma de tabela markdown"""
+        OBS: As seções 1, 2, 3 e 4 devem vir em forma de tabela
+        
+        Me retorne tudo na estrutura HTML"""
 
     client = OpenAI(
         api_key = enviroment["API_KEY"],

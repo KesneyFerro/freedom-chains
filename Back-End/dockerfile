@@ -1,0 +1,50 @@
+# # Use the official Ubuntu image as the base
+# FROM ubuntu:latest
+
+# # Update the package index and install pdflatex and LaTeX dependencies
+# RUN apt-get update \
+#     && apt-get install -y texlive \
+#     && apt-get install -y texlive-latex-extra \
+#     && apt-get install -y texlive-fonts-recommended \
+#     && apt-get install -y texlive-lang-english \
+#     && apt-get install -y texlive-lang-spanish \
+#     && apt-get install -y latexmk \
+#     && apt-get clean
+
+# # Set the working directory inside the Docker container
+# WORKDIR /data
+
+# # Copy LaTeX files into the container (if needed)
+# # COPY . /data
+
+# # Define the command to run when the Docker container starts
+# CMD ["pdflatex", "-interaction=nonstopmode", "document.tex"]
+
+
+# Use an image that includes LaTeX and other necessary tools
+FROM pandoc/latex
+FROM ubuntu:latest
+
+# Set the working directory inside the Docker container
+WORKDIR ./
+
+# Copy your API code into the Docker image
+COPY . ./
+
+# Install any dependencies required by your API (if needed)
+RUN apt update \
+    && apt install -y python3 python3-pip python3.12-venv \
+    && apt clean
+# RUN pip3 install --upgrade pip
+
+RUN python3 -m venv /venv
+ENV PATH="/venv/bin:$PATH"
+
+RUN pip3 install -r requirements.txt
+
+# Expose the port your API listens on (if needed)
+# EXPOSE 5000
+
+# Define the command to run your API
+CMD ["python3", "uvicorn api:app --host 0.0.0.0 --port $PORT"]
+

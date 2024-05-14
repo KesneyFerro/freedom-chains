@@ -34,19 +34,13 @@ export default function Navbar() {
             </Button>
           </DropdownTrigger>
           <DropdownMenu aria-label="Static Actions">
-            <DropdownItem
-              href="http://localhost:3000/detento/administrar?page=0"
-              key="new"
-            >
+            <DropdownItem href="/detento/administrar?page=0" key="new">
               Adicionar Detento
             </DropdownItem>
-            <DropdownItem
-              href="http://localhost:3000/detento/administrar?page=1"
-              key="copy"
-            >
+            <DropdownItem href="/detento/administrar?page=1" key="copy">
               Adicionar Comportamento
             </DropdownItem>
-            <DropdownItem key="edit" href="http://localhost:3000/penitenciaria">
+            <DropdownItem key="edit" href="/penitenciaria">
               Criar Penitenciaria
             </DropdownItem>
           </DropdownMenu>

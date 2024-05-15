@@ -9,20 +9,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Detento({}) {
-  const reportsAvailable = [
-    "1234",
-    "2396",
-    "2960",
-    "4992",
-    "5832",
-    "5990",
-    "7107",
-    "7438",
-    "7643",
-    "8748",
-    "9876",
-    "9836",
-  ];
+  const reportsAvailable = ["2396", "5832", "5990", "7438", "9836"];
   const params = useParams<{ detento: string }>();
   const {
     data: prisioneiro,

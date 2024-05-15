@@ -1071,8 +1071,6 @@ contract FDC is ERC20, ERC20Burnable, Ownable {
 }
 ```
 
-Here's a translation of the provided content into English, reformatted for a README.md file:
-
 ---
 
 ## Lumx Protocol API Integration

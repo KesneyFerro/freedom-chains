@@ -405,10 +405,66 @@ contract FDC is ERC20, ERC20Burnable, Ownable {
 
 A integração com a API do Lumx Protocol foi uma decisão estratégica crucial para o sucesso do projeto. O Lumx Protocol é conhecido por sua inovação e excelência tecnológica, oferecendo uma plataforma robusta e altamente segura para o desenvolvimento de aplicações blockchain. A escolha do Lumx Protocol permitiu-nos não apenas implementar funcionalidades complexas com facilidade mas também garantir a segurança e a confiabilidade do sistema de recompensas. A capacidade de interagir com o contrato para realizar operações de mint é um testemunho da flexibilidade e eficiência do Lumx Protocol. A API do Lumx se destaca pela sua interface intuitiva e pelo suporte excepcional, facilitando uma integração sem problemas e permitindo que nossa equipe se concentre em otimizar a experiência do usuário e a funcionalidade do sistema.
 
-Dessa forma, a introdução do token FDC dentro do SNAP criou um ambiente motivador para os agentes, incentivando a consistência e a precisão no registro de dados. Além disso, a tokenização das recompensas fortalece a transparência das operações, pois cada transação e acúmulo de tokens são registrados na blockchain, proporcionando uma visibilidade completa para os administradores do sistema e os próprios agentes.
+Dessa forma, a introdução do token FDC dentro do SNAP criou um ambiente engajador para os agentes, incentivando a consistência e a precisão no registro de dados. Além disso, a tokenização das recompensas fortalece a transparência das operações, pois cada transação e acúmulo de tokens são registrados na blockchain, proporcionando uma visibilidade completa para os administradores do sistema e os próprios agentes.
 A implementação deste sistema de tokens não apenas alinha nossa iniciativa com os escopos modernos de fidelização e engajamento digital mas também redefine a maneira como as operações penitenciárias podem ser geridas, oferecendo um modelo replicável para outras instituições buscando modernizar e melhorar seus sistemas através da tecnologia blockchain.
 
-O uso de tokens como mecanismo de fidelização representa uma inovação significativa no campo da administração penitenciária, proporcionando um incentivo tangível para o aprimoramento contínuo do desempenho dos agentes. A parceria com o Lumx Protocol, apesar de alguns desafios técnicos, provou ser extremamente valiosa, permitindo-nos explorar novas fronteiras em tecnologia blockchain e segurança de dados, estabelecendo um novo padrão de eficácia e eficiência dentro do setor público.
+O uso de tokens como mecanismo de engajamento representa uma inovação significativa no campo da administração penitenciária, proporcionando um incentivo tangível para o aprimoramento contínuo do desempenho dos agentes. A parceria com o Lumx Protocol, apesar de alguns desafios técnicos, provou ser extremamente valiosa, permitindo-nos explorar novas fronteiras em tecnologia blockchain e segurança de dados, estabelecendo um novo padrão de eficácia e eficiência dentro do setor público.
+
+- Utilização de NFT como comprovantes
+
+ escolha de implementar o token não fungível CFC através de um contrato inteligente ERC-721 foi guiada pela necessidade de criar um sistema de comprovante único que pudesse ter 100% de confiabilidade e transparência, assim como todo o projeto. Em primeiro momento, foi utilizado a ferramenta de criação rápida de contratos da [OpenZeppelin](https://www.openzeppelin.com/contracts) novamente. Contudo, foi notada a necessidade de armazenar dados relevantes para um comprovante que não são padrões de NFTs como um todo. Nessa perspectiva, o contrato abaixo foi desenvolvido:
+
+ ``` solidity
+ // SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Comprovante is ERC721, ERC721Burnable, Ownable {
+    uint256 private _nextTokenId;
+    mapping(uint256 => TokenData) public tokenData;
+
+    struct TokenData {
+        uint256 acquisitionDate;
+        uint256 coinsBalanceBefore;
+        uint256 tokenId;
+    }
+
+    constructor(address initialOwner)
+        ERC721("Comprovante", "CFC")
+        Ownable(initialOwner) // Não precisa de argumentos
+    {
+        _nextTokenId = 1;
+        transferOwnership(initialOwner);
+    }
+
+    function safeMint(address to, uint256 coinsBalanceBefore) public {
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(to, tokenId);
+        tokenData[tokenId] = TokenData({
+            acquisitionDate: block.timestamp,
+            coinsBalanceBefore: coinsBalanceBefore,
+            tokenId: tokenId
+        });
+    }
+
+    function getTokenData(uint256 tokenId) public view returns (uint256, uint256, uint256) {
+        require(tokenData[tokenId].acquisitionDate > 0, "Token ID does not exist.");
+        TokenData memory data = tokenData[tokenId];
+        return (data.acquisitionDate, data.coinsBalanceBefore, data.tokenId);
+    }
+}
+
+ ```
+ 
+Como pode ser observado, o contrato possui funcionalidades de safeMint e Autoincrement, mas além disso, importa a bliblioteca Burnable da Open Zeppelin, pensando futuramente na criação de um sistema de queima de NFT para utilização do benefício adquirido.
+Ademais, foram criadas funcionalidades nas quais o contrato é capaz de salvar informações de:
+- Data de aquisição
+- Quantidade de tokens FDC que o usuário possuía enquanto requisitava o NFT.
+
+As implementações foram feitas a fim de facilitar a visualização de possíveis inconsistências no sistema, deixando mais viável a identificação visual de falhas de segurança.
 
 
 Em suma, a implementação do sistema de cadastro e monitoramento de presidiários dentro do contexto do Sistema Nacional de Administração Penitenciária (SNAP) demonstra como a tecnologia blockchain, aliada a contratos inteligentes e uma interface amigável como a MetaMask, pode revolucionar a transparência e eficiência na gestão penitenciária. Ao fornecer um portal transparente para atualização de dados dos detentos e registrar comportamentos através de smart contracts, o sistema promove a imutabilidade das informações e a integridade do histórico criminal de cada preso. Isso não apenas simplifica o processo de monitoramento de pena, mas também aumenta a confiança na administração prisional ao garantir uma abordagem mais justa e transparente. Em última análise, essa iniciativa representa um avanço significativo na modernização do sistema carcerário, visando uma gestão mais eficaz e humanizada, e garantindo uma eficácia por meio da fidelização dos clientes da solução.
@@ -1026,6 +1082,60 @@ Integrating the Lumx Protocol API was a strategic decision crucial for the succe
 The introduction of the FDC token within SNAP has created a motivating environment for agents, encouraging consistency and accuracy in data recording. Moreover, the tokenization of rewards enhances the transparency of operations, as each transaction and token accumulation are recorded on the blockchain, providing complete visibility for system administrators and agents. Implementing this token system aligns our initiative with modern scopes of loyalty and digital engagement and redefines how penitentiary operations can be managed, offering a replicable model for other institutions seeking to modernize and improve their systems through blockchain technology.
 
 Using tokens as a loyalty mechanism represents a significant innovation in penitentiary administration, providing a tangible incentive for the continuous improvement of agent performance. Despite some technical challenges, the partnership with Lumx Protocol has proven to be extremely valuable, allowing us to explore new frontiers in blockchain technology and data security, setting a new standard of efficacy and efficiency within the public sector.
+
+- Use of NFTs as Vouchers
+
+The decision to implement the non-fungible token (NFT) CFC through an ERC-721 smart contract was driven by the need to create a unique voucher system that could have 100% reliability and transparency, just like the entire project. Initially, the rapid contract creation tool from OpenZeppelin was used again. However, the need to store data relevant to a voucher that are not standard for NFTs as a whole was noted. From this perspective, the following contract was developed:
+
+```solidity
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.20;
+
+import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
+import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Burnable.sol";
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Comprovante is ERC721, ERC721Burnable, Ownable {
+    uint256 private _nextTokenId;
+    mapping(uint256 => TokenData) public tokenData;
+
+    struct TokenData {
+        uint256 acquisitionDate;
+        uint256 coinsBalanceBefore;
+        uint256 tokenId;
+    }
+
+    constructor(address initialOwner)
+        ERC721("Comprovante", "CFC")
+        Ownable(initialOwner) // Does not need arguments
+    {
+        _nextTokenId = 1;
+        transferOwnership(initialOwner);
+    }
+
+    function safeMint(address to, uint256 coinsBalanceBefore) public {
+        uint256 tokenId = _nextTokenId++;
+        _safeMint(to, tokenId);
+        tokenData[tokenId] = TokenData({
+            acquisitionDate: block.timestamp,
+            coinsBalanceBefore: coinsBalanceBefore,
+            tokenId: tokenId
+        });
+    }
+
+    function getTokenData(uint256 tokenId) public view returns (uint256, uint256, uint256) {
+        require(tokenData[tokenId].acquisitionDate > 0, "Token ID does not exist.");
+        TokenData memory data = tokenData[tokenId];
+        return (data.acquisitionDate, data.coinsBalanceBefore, data.tokenId);
+    }
+}
+
+```
+As can be observed, the contract has functionalities of safeMint and Autoincrement, but besides that, it imports the Burnable library from Open Zeppelin, with future thoughts on creating a system for burning NFTs to utilize the acquired benefit. Additionally, functionalities were created in which the contract is able to save information on:
+- Acquisition date
+- Amount of FDC tokens the user had while requesting the NFT.
+
+These implementations were made to facilitate the visualization of possible inconsistencies in the system, making it more feasible to visually identify security flaws.
 
 In summary, implementing the prisoner registration and monitoring system within the context of the National Penitentiary Administration System (SNAP) demonstrates how blockchain technology, combined with smart contracts and a user-friendly interface like MetaMask, can revolutionize transparency and efficiency in penitentiary management. By providing a transparent portal for updating inmate data and recording behaviors through smart contracts, the system promotes the immutability of information and the integrity of each prisoner's criminal history. This not only simplifies the monitoring process but also enhances trust in prison administration by ensuring a fairer and more transparent approach. Ultimately, this initiative represents a significant advance in modernizing the prison system, aiming for more effective and humane management, and ensuring effectiveness through customer loyalty.
 

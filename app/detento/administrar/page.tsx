@@ -84,7 +84,7 @@ export default function AdministrarDetentos() {
     setDataComportamento("");
   };
 
-  console.log(error?.message);
+  error && console.log(error?.message);
 
   const { isConnected, address } = useAccount();
 

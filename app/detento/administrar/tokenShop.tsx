@@ -31,7 +31,7 @@ export default function TokenShop() {
 
   useEffect(() => {
     if (tokensBalance) {
-      console.log(tokensBalance);
+      // console.log(tokensBalance);
       setTokens(parseFloat(tokensBalance?.formatted) || 0);
     }
   }, [tokensBalance, tokens]);
@@ -55,7 +55,7 @@ export default function TokenShop() {
     }
 
     await switchChain(config, { chainId: sepolia.id });
-    console.log("gastarToken");
+    // console.log("gastarToken");
     await writeContract({
       abi: abiData2,
       address: "0x52C9fa84a27958f651BC54b0e0b574E8F5a9FA80",

@@ -11,7 +11,13 @@ import { switchChain } from "wagmi/actions";
 import { scrollSepolia, sepolia } from "wagmi/chains";
 
 export default function AddComportamento({}) {
-  const { data: hash, error, isPending, writeContract } = useWriteContract();
+  const {
+    data: hash,
+    error,
+    isPending,
+    writeContract,
+    isSuccess,
+  } = useWriteContract();
   // const {
   //   data: hashToken,
   //   error: errorToken,
@@ -19,11 +25,6 @@ export default function AddComportamento({}) {
   //   writeContract: writeContractToken,
   // } = useWriteContract();
   const [hashToken, setHashToken] = useState(null);
-
-  const { isLoading: isConfirming, isSuccess: isConfirmed } =
-    useWaitForTransactionReceipt({
-      hash: hash,
-    });
 
   const [
     identificadorDetentoComportamento,
@@ -69,7 +70,7 @@ export default function AddComportamento({}) {
   };
 
   useEffect(() => {
-    if (isConfirmed && wallet !== "") {
+    if (isSuccess) {
       const data = {
         walletId: "e4924f49-e241-45cd-9ed5-565768e9375c",
         contractAddress: "0x52C9fa84a27958f651BC54b0e0b574E8F5a9FA80",
@@ -100,7 +101,7 @@ export default function AddComportamento({}) {
         })
         .catch((err) => console.error(err));
     }
-  }, [isConfirmed, wallet]);
+  }, [isSuccess, wallet]);
   return (
     <motion.form
       initial={{ opacity: 0 }}

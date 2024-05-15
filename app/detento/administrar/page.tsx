@@ -4,12 +4,7 @@ import CustomNavMenu from "@/app/components/menu/CustomNavMenu";
 import { Button, DatePicker, Input, Textarea } from "@nextui-org/react";
 import { parseDate } from "@internationalized/date";
 import { I18nProvider } from "@react-aria/i18n";
-<<<<<<< HEAD
 import { FormEvent, SetStateAction, useState } from "react";
-=======
-import { useState } from "react";
->>>>>>> FreedomChains/main
-
 import { useAccount, useReadContract, useWriteContract } from "wagmi";
 import { abiData } from "@/app/abis/abi";
 import { WalletOptions } from "@/app/components/profile/wallet-option";
@@ -41,11 +36,7 @@ export default function AdministrarDetentos() {
 
   const { data: wallets } = useReadContract({
     abi: abiData,
-<<<<<<< HEAD
     address: "0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a",
-=======
-    address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
->>>>>>> FreedomChains/main
     functionName: "getAuthorizedAddresses",
     chainId: 534351,
     args: [],
@@ -55,11 +46,7 @@ export default function AdministrarDetentos() {
     e.preventDefault();
     await switchChain(config, { chainId: scrollSepolia.id });
     writeContract({
-<<<<<<< HEAD
       address: "0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a",
-=======
-      address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
->>>>>>> FreedomChains/main
       functionName: "registerPrisonerInfo",
       abi: abiData,
       chainId: 534351,
@@ -81,11 +68,7 @@ export default function AdministrarDetentos() {
     e.preventDefault();
     await switchChain(config, { chainId: scrollSepolia.id });
     writeContract({
-<<<<<<< HEAD
       address: "0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a",
-=======
-      address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
->>>>>>> FreedomChains/main
       functionName: "addBehaviorRecord",
       abi: abiData,
       chainId: 534351,
@@ -147,11 +130,7 @@ export default function AdministrarDetentos() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           key={selectedMenu}
-<<<<<<< HEAD
           onSubmit={(e: FormEvent<HTMLFormElement>) => handleAddDetento(e)}
-=======
-          onSubmit={(e) => handleAddDetento(e)}
->>>>>>> FreedomChains/main
           className="flex flex-col gap-y-3 mt-5"
         >
           <Input
@@ -160,13 +139,9 @@ export default function AdministrarDetentos() {
             type="number"
             isDisabled={isPending}
             value={identificadorDetentoAdd}
-<<<<<<< HEAD
             onChange={(e: { target: { value: SetStateAction<string> } }) =>
               setIdentificadorDetentoAdd(e.target.value)
             }
-=======
-            onChange={(e) => setIdentificadorDetentoAdd(e.target.value)}
->>>>>>> FreedomChains/main
           />
           <I18nProvider locale="pt-BR">
             <DatePicker

@@ -9,24 +9,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 
 export default function Detento({}) {
-<<<<<<< HEAD
-  const reportsAvailable = [
-    "1234",
-    "2396",
-    "2960",
-    "4992",
-    "5832",
-    "5990",
-    "7107",
-    "7438",
-    "7643",
-    "8748",
-    "9876",
-    "9836",
-  ];
-=======
   const reportsAvailable = ["2396", "5832", "5990", "7438", "9836"];
->>>>>>> FreedomChains/main
   const params = useParams<{ detento: string }>();
   const {
     data: prisioneiro,
@@ -34,11 +17,7 @@ export default function Detento({}) {
     isPending,
   } = useReadContract({
     abi: abiData,
-<<<<<<< HEAD
     address: "0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a",
-=======
-    address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
->>>>>>> FreedomChains/main
     functionName: "getPrisonerInfo",
     chainId: 534351,
     args: [BigInt(params.detento)],
@@ -50,21 +29,14 @@ export default function Detento({}) {
     isPending: isPendingBehavorRecords,
   } = useReadContract({
     abi: abiData,
-<<<<<<< HEAD
     address: "0x6f152c6Bf0a8C692E66Fe7c1cf2C29b7d4eCE37a",
-=======
-    address: "0x13258E8be2e5b99A462f7F20b80035Bfcbe009f5",
->>>>>>> FreedomChains/main
     functionName: "getBehaviorRecords",
     chainId: 534351,
     args: [BigInt(params.detento)],
   });
 
   const [comportamentoAnalytic, setComportamentoAnalytic] = useState<any>([]);
-<<<<<<< HEAD
   const [loading, setLoading] = useState(false);
-=======
->>>>>>> FreedomChains/main
 
   useEffect(() => {
     if (behavorRecords) {
@@ -91,11 +63,6 @@ export default function Detento({}) {
     }
   }, [behavorRecords, params.detento]);
 
-<<<<<<< HEAD
-=======
-  console.log(comportamentoAnalytic);
-
->>>>>>> FreedomChains/main
   if (isPending)
     return (
       <div className="mt-10 w-full flex justify-center items-center">
@@ -116,10 +83,6 @@ export default function Detento({}) {
       </div>
     );
   }
-<<<<<<< HEAD
-=======
-  console.log(prisioneiro);
->>>>>>> FreedomChains/main
   const howLongUntilRelease = () => {
     const initialDate = new Date(
       Number((prisioneiro as any)?.prisonDate) * 1000 || 0
@@ -146,7 +109,6 @@ export default function Detento({}) {
     ];
   };
 
-<<<<<<< HEAD
   const getPrisonerReport = async () => {
     const history = (behavorRecords as any[])?.map((record: any) => ({
       comportamento: record.behavior,
@@ -184,8 +146,6 @@ export default function Detento({}) {
     setLoading(false);
   };
 
-=======
->>>>>>> FreedomChains/main
   return (
     <>
       <SearchBar />
@@ -281,11 +241,7 @@ export default function Detento({}) {
             <h4 className="text-white font-medium">Histórico</h4>
 
             <div className="p-3 rounded-md bg-[#ca61db]">
-<<<<<<< HEAD
               {/* <Link
-=======
-              <Link
->>>>>>> FreedomChains/main
                 target="_blank"
                 href={
                   reportsAvailable.includes(params.detento)
@@ -297,7 +253,6 @@ export default function Detento({}) {
                     ? "cursor-pointer"
                     : "cursor-not-allowed"
                 }
-<<<<<<< HEAD
               > */}
               <button
                 // disabled={!reportsAvailable.includes(params.detento)}
@@ -312,16 +267,6 @@ export default function Detento({}) {
                 )}
               </button>
               {/* </Link> */}
-=======
-              >
-                <button
-                  disabled={!reportsAvailable.includes(params.detento)}
-                  className="rounded-md disabled:text-white/50 disabled:bg-[#8d4c99]  bg-[#b246c4] text-white px-3 py-2 w-full uppercase "
-                >
-                  Baixar Histórico Completo
-                </button>
-              </Link>
->>>>>>> FreedomChains/main
             </div>
 
             {(behavorRecords as any)?.map((record: any, index: number) => (

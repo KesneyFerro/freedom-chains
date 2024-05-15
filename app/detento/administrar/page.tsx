@@ -19,11 +19,15 @@ import { scrollSepolia } from "wagmi/chains";
 import { motion } from "framer-motion";
 import AddComportamento from "./addComportamento";
 import TokenShop from "./tokenShop";
+import { useSearchParams } from "next/navigation";
 
 export default function AdministrarDetentos() {
   const { data: hash, error, isPending, writeContract } = useWriteContract();
-
-  const [selectedMenu, setSelectedMenu] = useState(0);
+  const searchParams = useSearchParams();
+  const selectedPage = searchParams.get("page");
+  const [selectedMenu, setSelectedMenu] = useState(
+    parseInt(selectedPage || "0") || 0
+  );
   const [identificadorDetentoAdd, setIdentificadorDetentoAdd] = useState("");
   const [dataPrisao, setDataPrisao] = useState<any>(null);
   const [dataLiberacao, setDataLiberacao] = useState<any>(null);
@@ -114,16 +118,26 @@ export default function AdministrarDetentos() {
   // console.log(wallets);
   return (
     <div className="flex flex-col w-full">
-      {!(wallets as String[])?.includes(address || "") && (
-        <div className="w-full rounded-md bg-red-700 px-4 py-2 ">
+      {!(wallets as String[])?.includes(address || "") &&
+        selectedMenu !== 2 && (
+          <div className="w-full rounded-md bg-red-700 px-4 py-2 ">
+            <h1 className="text-white">
+              Você não tem permissão para executar as funções dessa página
+            </h1>
+          </div>
+        )}
+
+      {(wallets as String[])?.includes(address || "") && selectedMenu === 2 && (
+        <div className="w-full rounded-md bg-[#7c1c8b] px-4 py-2 ">
           <h1 className="text-white">
-            Você não tem permissão para executar as funções dessa página
+            Lembre-se de entrar na sua carteira pessoal para poder interagir com
+            a loja
           </h1>
         </div>
       )}
 
       <CustomNavMenu
-        menuNames={["Add Detento", "Add Comportamento", "TokenShop"]}
+        menuNames={["Add Detento", "Add Comportamento", "Resgatar Recompensa"]}
         selectIndex={selectedMenu}
         setSelectedIndex={setSelectedMenu}
       />
